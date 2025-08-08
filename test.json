@@ -8,23 +8,196 @@
     },
     {
         "type": "mcq",
+        "question": "The SI unit of electric field intensity is:",
+        "options": ["N/C", "C/N", "V/m", "Both A and C"],
+        "correct": 3,
+        "subject": "Physics"
+    },
+    {
+        "type": "fillblank",
+        "question": "The time period of a simple pendulum of length 1m at Earth's surface is _____ seconds (g = 9.8 m/s²)",
+        "answer": "2.01",
+        "subject": "Physics"
+    },
+    {
+        "type": "mcq",
+        "question": "Which of the following is a vector quantity?",
+        "options": ["Mass", "Temperature", "Force", "Energy"],
+        "correct": 2,
+        "subject": "Physics"
+    },
+    {
+        "type": "mcq",
+        "question": "A body of mass 2 kg is moving with velocity 10 m/s. Its kinetic energy is:",
+        "options": ["20 J", "50 J", "100 J", "200 J"],
+        "correct": 2,
+        "subject": "Physics"
+    },
+    {
+        "type": "fillblank",
+        "question": "The refractive index of water is _____ (approx value)",
+        "answer": "1.33",
+        "subject": "Physics"
+    },
+    {
+        "type": "mcq",
+        "question": "The frequency of AC mains in India is:",
+        "options": ["25 Hz", "50 Hz", "60 Hz", "100 Hz"],
+        "correct": 1,
+        "subject": "Physics"
+    },
+    {
+        "type": "mcq",
+        "question": "Which law states that the angle of incidence equals the angle of reflection?",
+        "options": ["Snell's Law", "Ohm's Law", "Law of Reflection", "Faraday's Law"],
+        "correct": 2,
+        "subject": "Physics"
+    },
+    {
+        "type": "fillblank",
+        "question": "The speed of light in vacuum is _____ m/s",
+        "answer": "3e8",
+        "subject": "Physics"
+    },
+    {
+        "type": "mcq",
+        "question": "The unit of electrical resistance is:",
+        "options": ["Ohm", "Volt", "Ampere", "Watt"],
+        "correct": 0,
+        "subject": "Physics"
+    },
+    {
+        "type": "mcq",
         "question": "The hybridization of carbon in methane (CH₄) is:",
         "options": ["sp", "sp²", "sp³", "sp³d"],
         "correct": 2,
         "subject": "Chemistry"
     },
     {
+        "type": "mcq",
+        "question": "Which of the following is an example of a Lewis acid?",
+        "options": ["NH₃", "H₂O", "BF₃", "OH⁻"],
+        "correct": 2,
+        "subject": "Chemistry"
+    },
+    {
         "type": "fillblank",
-        "question": "The derivative of sin(x²) with respect to x is:",
-        "answer": "2x cos(x²)",
+        "question": "The IUPAC name of CH₃-CH₂-CH₂-CH₃ is _____",
+        "answer": "butane",
+        "subject": "Chemistry"
+    },
+    {
+        "type": "mcq",
+        "question": "The pH of a neutral solution at 25°C is:",
+        "options": ["0", "7", "10", "14"],
+        "correct": 1,
+        "subject": "Chemistry"
+    },
+    {
+        "type": "mcq",
+        "question": "Which element has the atomic number 1?",
+        "options": ["Helium", "Hydrogen", "Oxygen", "Carbon"],
+        "correct": 1,
+        "subject": "Chemistry"
+    },
+    {
+        "type": "fillblank",
+        "question": "The chemical formula of sulfuric acid is _____",
+        "answer": "H2SO4",
+        "subject": "Chemistry"
+    },
+    {
+        "type": "mcq",
+        "question": "The number of electrons in the outermost shell of nitrogen is:",
+        "options": ["2", "5", "7", "8"],
+        "correct": 1,
+        "subject": "Chemistry"
+    },
+    {
+        "type": "mcq",
+        "question": "Which of the following is a noble gas?",
+        "options": ["Oxygen", "Nitrogen", "Argon", "Chlorine"],
+        "correct": 2,
+        "subject": "Chemistry"
+    },
+    {
+        "type": "fillblank",
+        "question": "The process of conversion of a solid directly to gas is called _____",
+        "answer": "sublimation",
+        "subject": "Chemistry"
+    },
+    {
+        "type": "mcq",
+        "question": "The number of periods in the modern periodic table is:",
+        "options": ["5", "6", "7", "8"],
+        "correct": 2,
+        "subject": "Chemistry"
+    },
+    {
+        "type": "mcq",
+        "question": "If log₂(x) + log₂(y) = 3, then xy equals:",
+        "options": ["6", "8", "9", "12"],
+        "correct": 1,
         "subject": "Mathematics"
     },
     {
         "type": "mcq",
-        "question": "The SI unit of electric field intensity is:",
-        "options": ["N/C", "C/N", "V/m", "Both A and C"],
+        "question": "The derivative of sin(x²) with respect to x is:",
+        "options": ["cos(x²)", "2x cos(x²)", "2x sin(x²)", "cos(2x)"],
+        "correct": 1,
+        "subject": "Mathematics"
+    },
+    {
+        "type": "fillblank",
+        "question": "The value of π correct to 2 decimal places is _____",
+        "answer": "3.14",
+        "subject": "Mathematics"
+    },
+    {
+        "type": "mcq",
+        "question": "If the roots of equation x² - 5x + 6 = 0 are α and β, then α + β equals:",
+        "options": ["5", "6", "-5", "-6"],
+        "correct": 0,
+        "subject": "Mathematics"
+    },
+    {
+        "type": "mcq",
+        "question": "The slope of the line perpendicular to y = 2x + 3 is:",
+        "options": ["2", "-2", "0.5", "-0.5"],
         "correct": 3,
-        "subject": "Physics",
-        "image": "https://example.com/electric-field.png"
+        "subject": "Mathematics"
+    },
+    {
+        "type": "fillblank",
+        "question": "The sum of angles in a triangle is _____ degrees",
+        "answer": "180",
+        "subject": "Mathematics"
+    },
+    {
+        "type": "mcq",
+        "question": "The value of (1 + i)² is:",
+        "options": ["1", "2i", "1 + i", "i"],
+        "correct": 1,
+        "subject": "Mathematics"
+    },
+    {
+        "type": "mcq",
+        "question": "The number of diagonals in a pentagon is:",
+        "options": ["3", "5", "7", "9"],
+        "correct": 1,
+        "subject": "Mathematics"
+    },
+    {
+        "type": "fillblank",
+        "question": "The derivative of eˣ with respect to x is _____",
+        "answer": "e^x",
+        "subject": "Mathematics"
+    },
+    {
+        "type": "mcq",
+        "question": "The solution of the equation 2x + 5 = 15 is:",
+        "options": ["5", "7.5", "10", "12.5"],
+        "correct": 0,
+        "subject": "Mathematics"
     }
 ]
