@@ -1,0 +1,30 @@
+[
+    {
+        "type": "mcq",
+        "question": "A particle moves in a straight line with constant acceleration. If it covers 20m in the first 2 seconds and 60m in the next 4 seconds, what is its initial velocity?",
+        "options": ["5 m/s", "10 m/s", "15 m/s", "20 m/s"],
+        "correct": 0,
+        "subject": "Physics"
+    },
+    {
+        "type": "mcq",
+        "question": "The hybridization of carbon in methane (CH₄) is:",
+        "options": ["sp", "sp²", "sp³", "sp³d"],
+        "correct": 2,
+        "subject": "Chemistry"
+    },
+    {
+        "type": "fillblank",
+        "question": "The derivative of sin(x²) with respect to x is:",
+        "answer": "2x cos(x²)",
+        "subject": "Mathematics"
+    },
+    {
+        "type": "mcq",
+        "question": "The SI unit of electric field intensity is:",
+        "options": ["N/C", "C/N", "V/m", "Both A and C"],
+        "correct": 3,
+        "subject": "Physics",
+        "image": "https://example.com/electric-field.png"
+    }
+]
