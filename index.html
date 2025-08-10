@@ -311,6 +311,36 @@
             color: white;
         }
 
+        /* Results Modal */
+        .results-content {
+            margin-bottom: 1rem;
+        }
+
+        .results-metric {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .results-metric.correct {
+            color: #27ae60;
+        }
+
+        .results-metric.wrong {
+            color: #e74c3c;
+        }
+
+        .results-metric.unattempted {
+            color: #f39c12;
+        }
+
+        .results-total {
+            font-weight: bold;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
         /* Error Message */
         .error-message {
             background: #ffecec;
@@ -419,6 +449,20 @@
         </div>
     </div>
 
+    <!-- Results Modal -->
+    <div class="modal" id="resultsModal">
+        <div class="modal-content">
+            <h3 class="modal-title">Test Results</h3>
+            <div class="results-content" id="resultsContent">
+                <!-- Results will be displayed here -->
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-cancel" onclick="hideResultsModal()">Close</button>
+                <button class="modal-btn modal-submit" onclick="reviewTest()">Review Answers</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Global variables
         let questions = [];
@@ -427,6 +471,9 @@
         let markedQuestions = new Set();
         let timeLeft = 5400; // 1.5 hours in seconds
         let timerInterval;
+
+        // Google Apps Script Web App URL
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXv5rjH7bP_J8d1PN8vW0ajcKeadXGiBAh07dd0DlfPBA_CT3zpHK6URiT-DYo-W62/exec";
 
         // DOM elements
         const questionGrid = document.getElementById('questionGrid');
@@ -441,6 +488,8 @@
         const navTimer = document.getElementById('navTimer');
         const mainContent = document.getElementById('mainContent');
         const submitModal = document.getElementById('submitModal');
+        const resultsModal = document.getElementById('resultsModal');
+        const resultsContent = document.getElementById('resultsContent');
         const toggleQuestionsBtn = document.getElementById('toggleQuestions');
         const questionGridContainer = document.getElementById('questionGridContainer');
 
@@ -730,54 +779,114 @@
             submitModal.style.display = 'none';
         }
 
-        function submitTest() {
-            clearInterval(timerInterval);
-            
-            // Calculate score
-            let score = 0;
-            let correct = 0;
-            let wrong = 0;
-            let unattempted = 0;
-            
+        function showResultsModal() {
+            resultsModal.style.display = 'flex';
+        }
+
+        function hideResultsModal() {
+            resultsModal.style.display = 'none';
+        }
+
+        function reviewTest() {
+            hideResultsModal();
+            // Implement review logic here
+            alert("Review functionality would go here");
+        }
+
+        // Convert user answers to the format expected by the Google Script
+        function prepareAnswersForGrading() {
+            const answerArray = [];
             questions.forEach((question, index) => {
-                if (userAnswers[index] !== null) {
-                    if (question.type === 'mcq') {
-                        if (userAnswers[index] === question.correct) {
-                            correct++;
-                            score += 4;
-                        } else {
-                            wrong++;
-                            score -= 1;
-                        }
-                    } else if (question.type === 'fillblank') {
-                        if (userAnswers[index].toLowerCase() === question.answer.toLowerCase()) {
-                            correct++;
-                            score += 4;
-                        } else {
-                            wrong++;
-                            score -= 1;
-                        }
-                    }
+                const userAnswer = userAnswers[index];
+                
+                if (question.type === 'mcq') {
+                    // For MCQs, convert the selected index to A/B/C/D
+                    answerArray.push(userAnswer !== null ? String.fromCharCode(65 + userAnswer) : null);
+                } else if (question.type === 'fillblank') {
+                    // For fill-in-the-blank, use the text value or null
+                    answerArray.push(userAnswer !== null ? userAnswer : null);
                 } else {
-                    unattempted++;
+                    // Default case
+                    answerArray.push(userAnswer !== null ? userAnswer : null);
                 }
             });
             
-            // Save results
-            const result = {
-                score: score,
-                correct: correct,
-                wrong: wrong,
-                unattempted: unattempted,
-                total: questions.length,
-                answers: userAnswers,
-                questions: questions
-            };
+            return answerArray;
+        }
+
+        // Display results in the modal
+        function displayResults(results) {
+            resultsContent.innerHTML = `
+                <div class="results-metric correct">
+                    <span>Correct Answers:</span>
+                    <span>${results.correctCount}</span>
+                </div>
+                <div class="results-metric wrong">
+                    <span>Wrong Answers:</span>
+                    <span>${results.wrongCount}</span>
+                </div>
+                <div class="results-metric unattempted">
+                    <span>Unattempted:</span>
+                    <span>${results.unattemptedCount}</span>
+                </div>
+                <div class="results-total">
+                    <span>Total Score:</span>
+                    <span>${results.totalPoints} points</span>
+                </div>
+            `;
+            showResultsModal();
+        }
+
+        // Submit test to Google Apps Script for grading
+        async function submitTest() {
+            clearInterval(timerInterval);
+            hideSubmitModal();
             
-            localStorage.setItem('testResult', JSON.stringify(result));
+            // Prepare answers for grading
+            const answerArray = prepareAnswersForGrading();
             
-            // Redirect to results page
-            window.location.href = 'results.html';
+            try {
+                // Show loading state
+                resultsContent.innerHTML = "<p>Grading your test...</p>";
+                showResultsModal();
+                
+                // Call Google Apps Script web app
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        studentAnswers: answerArray,
+                        sheetName: "JEEMAINS"
+                    })
+                });
+                
+                const results = await response.json();
+                
+                if (results.error) {
+                    throw new Error(results.error);
+                }
+                
+                // Display the results
+                displayResults(results);
+                
+                // Save results to localStorage
+                localStorage.setItem('testResults', JSON.stringify({
+                    answers: userAnswers,
+                    questions: questions,
+                    gradingResults: results
+                }));
+                
+            } catch (error) {
+                console.error('Grading error:', error);
+                resultsContent.innerHTML = `
+                    <div class="error-message">
+                        <p>Error grading test: ${error.message}</p>
+                        <button class="retry-btn" onclick="submitTest()">Try Again</button>
+                    </div>
+                `;
+            }
         }
 
         // Handle window resize
