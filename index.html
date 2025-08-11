@@ -15,24 +15,25 @@
         body {
             background: #f5f7fa;
             display: flex;
-            flex-direction: column;
             min-height: 100vh;
         }
 
         /* Navigation Panel */
         .nav-panel {
-            width: 100%;
+            width: 300px;
             background: white;
-            padding: 1rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            order: 2;
+            padding: 1.5rem;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
         }
 
         .nav-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
         }
 
         .nav-title {
@@ -49,32 +50,11 @@
             font-weight: bold;
         }
 
-        .toggle-questions {
-            display: none;
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            margin: 1rem auto;
-            cursor: pointer;
-        }
-
-        .question-grid-container {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .question-grid-container.show {
-            max-height: 500px;
-        }
-
         .question-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 0.8rem;
-            margin: 1rem 0;
+            margin-bottom: 1.5rem;
         }
 
         .question-btn {
@@ -105,7 +85,7 @@
             border: 3px solid #667eea;
         }
 
-        .question-btn.marked {
+        .question-btn.flagged {
             background: #f39c12;
             color: white;
         }
@@ -129,23 +109,23 @@
         /* Main Content */
         .main-content {
             flex: 1;
-            padding: 1rem;
-            order: 1;
+            padding: 2rem;
+            overflow-y: auto;
         }
 
         .question-container {
             background: white;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            margin-bottom: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .question-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid #eee;
         }
@@ -156,36 +136,35 @@
             font-size: 1.1rem;
         }
 
-        .mark-btn {
+        .flag-btn {
             background: #f39c12;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.9rem;
         }
 
-        .mark-btn.marked {
+        .flag-btn.flagged {
             background: #e67e22;
         }
 
         .question-text {
             font-size: 1.1rem;
             line-height: 1.6;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .question-image {
             max-width: 100%;
             height: auto;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             border-radius: 5px;
         }
 
         .options-container {
             display: grid;
-            gap: 0.8rem;
+            gap: 1rem;
         }
 
         .option {
@@ -238,18 +217,16 @@
             display: flex;
             justify-content: space-between;
             margin-top: 1.5rem;
-            gap: 1rem;
         }
 
         .nav-btn {
-            padding: 1rem;
+            padding: 1rem 2rem;
             background: #667eea;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.2s ease;
-            flex: 1;
         }
 
         .nav-btn:hover {
@@ -277,7 +254,7 @@
 
         .modal-content {
             background: white;
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 10px;
             max-width: 500px;
             width: 90%;
@@ -295,7 +272,7 @@
         }
 
         .modal-btn {
-            padding: 0.8rem;
+            padding: 0.8rem 1.5rem;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -311,43 +288,13 @@
             color: white;
         }
 
-        /* Results Modal */
-        .results-content {
-            margin-bottom: 1rem;
-        }
-
-        .results-metric {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-
-        .results-metric.correct {
-            color: #27ae60;
-        }
-
-        .results-metric.wrong {
-            color: #e74c3c;
-        }
-
-        .results-metric.unattempted {
-            color: #f39c12;
-        }
-
-        .results-total {
-            font-weight: bold;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-        }
-
         /* Error Message */
         .error-message {
             background: #ffecec;
             color: #e74c3c;
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 10px;
-            margin: 1rem;
+            margin: 2rem;
             text-align: center;
             border: 1px solid #e74c3c;
         }
@@ -362,31 +309,18 @@
             cursor: pointer;
         }
 
-        /* Desktop View */
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
             body {
-                flex-direction: row;
+                flex-direction: column;
             }
             
             .nav-panel {
-                width: 300px;
-                height: 100vh;
-                position: sticky;
-                top: 0;
-                order: 1;
-            }
-            
-            .main-content {
+                width: 100%;
                 order: 2;
-                padding: 2rem;
             }
             
-            .toggle-questions {
-                display: none;
-            }
-            
-            .question-grid-container {
-                max-height: none;
+            .question-grid {
+                grid-template-columns: repeat(10, 1fr);
             }
         }
     </style>
@@ -399,14 +333,11 @@
             <div class="timer" id="navTimer">01:30:00</div>
         </div>
         
-        <button class="toggle-questions" id="toggleQuestions">Show Questions</button>
-        
-        <div class="question-grid-container" id="questionGridContainer">
-            <div class="question-grid" id="questionGrid">
-                <!-- Question buttons will be added here -->
-            </div>
-            <button class="submit-btn" onclick="showSubmitModal()">Submit Test</button>
+        <div class="question-grid" id="questionGrid">
+            <!-- Question buttons will be added here -->
         </div>
+        
+        <button class="submit-btn" onclick="showSubmitModal()">Submit Test</button>
     </div>
 
     <!-- Main Content -->
@@ -414,7 +345,7 @@
         <div class="question-container">
             <div class="question-header">
                 <div class="question-number">Question <span id="currentQNum">1</span></div>
-                <button class="mark-btn" id="markBtn" onclick="toggleMark()">Mark for Review</button>
+                <button class="flag-btn" id="flagBtn" onclick="toggleFlag()">🚩 Flag</button>
             </div>
             
             <div class="question-text" id="questionText">
@@ -449,31 +380,14 @@
         </div>
     </div>
 
-    <!-- Results Modal -->
-    <div class="modal" id="resultsModal">
-        <div class="modal-content">
-            <h3 class="modal-title">Test Results</h3>
-            <div class="results-content" id="resultsContent">
-                <!-- Results will be displayed here -->
-            </div>
-            <div class="modal-buttons">
-                <button class="modal-btn modal-cancel" onclick="hideResultsModal()">Close</button>
-                <button class="modal-btn modal-submit" onclick="reviewTest()">Review Answers</button>
-            </div>
-        </div>
-    </div>
-
     <script>
         // Global variables
         let questions = [];
         let currentQuestion = 0;
         let userAnswers = {};
-        let markedQuestions = new Set();
+        let flaggedQuestions = new Set();
         let timeLeft = 5400; // 1.5 hours in seconds
         let timerInterval;
-
-        // Google Apps Script Web App URL
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXv5rjH7bP_J8d1PN8vW0ajcKeadXGiBAh07dd0DlfPBA_CT3zpHK6URiT-DYo-W62/exec";
 
         // DOM elements
         const questionGrid = document.getElementById('questionGrid');
@@ -482,24 +396,12 @@
         const optionsContainer = document.getElementById('optionsContainer');
         const fillBlankInput = document.getElementById('fillBlankInput');
         const currentQNum = document.getElementById('currentQNum');
-        const markBtn = document.getElementById('markBtn');
+        const flagBtn = document.getElementById('flagBtn');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const navTimer = document.getElementById('navTimer');
         const mainContent = document.getElementById('mainContent');
         const submitModal = document.getElementById('submitModal');
-        const resultsModal = document.getElementById('resultsModal');
-        const resultsContent = document.getElementById('resultsContent');
-        const toggleQuestionsBtn = document.getElementById('toggleQuestions');
-        const questionGridContainer = document.getElementById('questionGridContainer');
-
-        // Toggle question grid visibility on mobile
-        toggleQuestionsBtn.addEventListener('click', () => {
-            questionGridContainer.classList.toggle('show');
-            toggleQuestionsBtn.textContent = questionGridContainer.classList.contains('show') 
-                ? 'Hide Questions' 
-                : 'Show Questions';
-        });
 
         // Show error message
         function showError(message) {
@@ -568,14 +470,7 @@
                 const btn = document.createElement('button');
                 btn.className = 'question-btn';
                 btn.textContent = index + 1;
-                btn.onclick = () => {
-                    goToQuestion(index);
-                    // On mobile, hide the question grid after selection
-                    if (window.innerWidth < 768) {
-                        questionGridContainer.classList.remove('show');
-                        toggleQuestionsBtn.textContent = 'Show Questions';
-                    }
-                };
+                btn.onclick = () => goToQuestion(index);
                 questionGrid.appendChild(btn);
             });
 
@@ -583,11 +478,6 @@
             questions.forEach((_, index) => {
                 userAnswers[index] = null;
             });
-
-            // Show toggle button on mobile
-            if (window.innerWidth < 768) {
-                toggleQuestionsBtn.style.display = 'block';
-            }
 
             // Start timer
             startTimer();
@@ -646,8 +536,8 @@
             prevBtn.disabled = index === 0;
             nextBtn.textContent = index === questions.length - 1 ? 'Finish' : 'Next';
             
-            // Update mark button
-            updateMarkButton();
+            // Update flag button
+            updateFlagButton();
             
             // Load question type
             if (question.type === 'mcq') {
@@ -709,23 +599,23 @@
             updateQuestionGrid();
         }
 
-        function toggleMark() {
-            if (markedQuestions.has(currentQuestion)) {
-                markedQuestions.delete(currentQuestion);
+        function toggleFlag() {
+            if (flaggedQuestions.has(currentQuestion)) {
+                flaggedQuestions.delete(currentQuestion);
             } else {
-                markedQuestions.add(currentQuestion);
+                flaggedQuestions.add(currentQuestion);
             }
-            updateMarkButton();
+            updateFlagButton();
             updateQuestionGrid();
         }
 
-        function updateMarkButton() {
-            if (markedQuestions.has(currentQuestion)) {
-                markBtn.classList.add('marked');
-                markBtn.textContent = 'Marked for Review';
+        function updateFlagButton() {
+            if (flaggedQuestions.has(currentQuestion)) {
+                flagBtn.classList.add('flagged');
+                flagBtn.textContent = '🚩 Flagged';
             } else {
-                markBtn.classList.remove('marked');
-                markBtn.textContent = 'Mark for Review';
+                flagBtn.classList.remove('flagged');
+                flagBtn.textContent = '🚩 Flag';
             }
         }
 
@@ -746,9 +636,9 @@
                     btn.classList.add('answered');
                 }
                 
-                // Marked questions
-                if (markedQuestions.has(index)) {
-                    btn.classList.add('marked');
+                // Flagged questions
+                if (flaggedQuestions.has(index)) {
+                    btn.classList.add('flagged');
                 }
             });
         }
@@ -779,126 +669,55 @@
             submitModal.style.display = 'none';
         }
 
-        function showResultsModal() {
-            resultsModal.style.display = 'flex';
-        }
-
-        function hideResultsModal() {
-            resultsModal.style.display = 'none';
-        }
-
-        function reviewTest() {
-            hideResultsModal();
-            // Implement review logic here
-            alert("Review functionality would go here");
-        }
-
-        // Convert user answers to the format expected by the Google Script
-        function prepareAnswersForGrading() {
-            const answerArray = [];
+        function submitTest() {
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let score = 0;
+            let correct = 0;
+            let wrong = 0;
+            let unattempted = 0;
+            
             questions.forEach((question, index) => {
-                const userAnswer = userAnswers[index];
-                
-                if (question.type === 'mcq') {
-                    // For MCQs, convert the selected index to A/B/C/D
-                    answerArray.push(userAnswer !== null ? String.fromCharCode(65 + userAnswer) : null);
-                } else if (question.type === 'fillblank') {
-                    // For fill-in-the-blank, use the text value or null
-                    answerArray.push(userAnswer !== null ? userAnswer : null);
+                if (userAnswers[index] !== null) {
+                    if (question.type === 'mcq') {
+                        if (userAnswers[index] === question.correct) {
+                            correct++;
+                            score += 4;
+                        } else {
+                            wrong++;
+                            score -= 1;
+                        }
+                    } else if (question.type === 'fillblank') {
+                        if (userAnswers[index].toLowerCase() === question.answer.toLowerCase()) {
+                            correct++;
+                            score += 4;
+                        } else {
+                            wrong++;
+                            score -= 1;
+                        }
+                    }
                 } else {
-                    // Default case
-                    answerArray.push(userAnswer !== null ? userAnswer : null);
+                    unattempted++;
                 }
             });
             
-            return answerArray;
-        }
-
-        // Display results in the modal
-        function displayResults(results) {
-            resultsContent.innerHTML = `
-                <div class="results-metric correct">
-                    <span>Correct Answers:</span>
-                    <span>${results.correctCount}</span>
-                </div>
-                <div class="results-metric wrong">
-                    <span>Wrong Answers:</span>
-                    <span>${results.wrongCount}</span>
-                </div>
-                <div class="results-metric unattempted">
-                    <span>Unattempted:</span>
-                    <span>${results.unattemptedCount}</span>
-                </div>
-                <div class="results-total">
-                    <span>Total Score:</span>
-                    <span>${results.totalPoints} points</span>
-                </div>
-            `;
-            showResultsModal();
-        }
-
-        // Submit test to Google Apps Script for grading
-        async function submitTest() {
-            clearInterval(timerInterval);
-            hideSubmitModal();
+            // Save results
+            const result = {
+                score: score,
+                correct: correct,
+                wrong: wrong,
+                unattempted: unattempted,
+                total: questions.length,
+                answers: userAnswers,
+                questions: questions
+            };
             
-            // Prepare answers for grading
-            const answerArray = prepareAnswersForGrading();
+            localStorage.setItem('testResult', JSON.stringify(result));
             
-            try {
-                // Show loading state
-                resultsContent.innerHTML = "<p>Grading your test...</p>";
-                showResultsModal();
-                
-                // Call Google Apps Script web app
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        studentAnswers: answerArray,
-                        sheetName: "JEEMAINS"
-                    })
-                });
-                
-                const results = await response.json();
-                
-                if (results.error) {
-                    throw new Error(results.error);
-                }
-                
-                // Display the results
-                displayResults(results);
-                
-                // Save results to localStorage
-                localStorage.setItem('testResults', JSON.stringify({
-                    answers: userAnswers,
-                    questions: questions,
-                    gradingResults: results
-                }));
-                
-            } catch (error) {
-                console.error('Grading error:', error);
-                resultsContent.innerHTML = `
-                    <div class="error-message">
-                        <p>Error grading test: ${error.message}</p>
-                        <button class="retry-btn" onclick="submitTest()">Try Again</button>
-                    </div>
-                `;
-            }
+            // Redirect to results page
+            window.location.href = 'results.html';
         }
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 768) {
-                toggleQuestionsBtn.style.display = 'none';
-                questionGridContainer.classList.add('show');
-            } else {
-                toggleQuestionsBtn.style.display = 'block';
-                questionGridContainer.classList.remove('show');
-            }
-        });
 
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', () => {
